@@ -1,0 +1,26 @@
+.wrapper{
+	padding: 15px;
+	width: 100%;
+}
+input {
+	width: 500px;
+	padding: 5px 10px;
+	border-radius: 4px;
+}
+.sample {
+	margin-left: calc(50%-250px);
+}
+.block {
+	
+}
+
+.table {
+	width: 500px;
+	margin-left: 30%;
+}
+.td1 {
+	width: 150px;
+}
+.td2 {
+	max-width: 350px;
+}

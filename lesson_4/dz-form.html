@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div class="wrapper text-center">
+        <div class="sample">
+            <form action="" v-if="!formSubmited" @submit.prevent="formSubmited = true">
+                <label for="email">Email</label><br>
+                <input type="email" v-model="email" id="email"> 
+                <hr>
+                <label for="firstName">First Name</label><br>
+                <input type="text" v-model="firstName" id="firstName">
+                <hr>
+                <label for="lastName">Last Name</label><br>
+                <input type="text" v-model="lastName" id="lastName">
+                <hr>
+                <label for="phone">Phone</label><br>
+                <input type="tel" v-model="phone" id="phone">
+                <hr>
+
+                <div class="block">
+                    <h2>Guest</h2>
+                    <div class="btn btn-primary" @click="addGuest">+</div>
+                </div>
+                <hr>
+                <div>
+                    <div v-for="(guest, index) in guests" >
+                        <label for="guest" @dblclick="delGuest(index)">Guest {{ index + 1 }}</label><br>
+                        <input type="text" v-model="guests[index]" id="guest">
+                        <hr>
+                    </div>
+                </div>
+                
+                <button class="btn btn-success">
+                    Send Data
+                </button>
+                <hr>
+                </form>
+
+                <div v-else>
+                    <table class="table table-bordered">
+                    <h1>All done!</h1>
+                    <tr>
+                        <td class="td1">Email</td>
+                        <td class="td2">{{ email }}</td>
+                    </tr>
+                    <tr>
+                        <td class="td1">Name</td>
+                        <td class="td2">{{ fullName }}</td>
+                    </tr>
+                    <tr>
+                        <td class="td1">Phone</td>
+                        <td class="td2">{{ phone }}</td>
+                    </tr>
+                    <tr>
+                        <td class="td1">Guest</td>
+                        <td class="td2">
+                            <div v-for="(guest, index)  in guests" >
+                                {{ guest }}
+                                <hr>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                </div>
+                
+           
+
+        </div>
+    </div>
+    
+    <script>
+       
+
+        let sample = new Vue({
+            el: '.sample',
+            data: {
+                guests: [],
+                email: '',
+                firstName: '',
+                lastName: '',
+                phone: '',
+                formSubmited: false
+            },
+            computed: {
+                fullName(){
+                    return this.firstName + ' ' + this.lastName;
+                }
+            },
+            methods: {
+                addGuest() {
+                    this.guests.push('');
+                    
+                },
+                delGuest(index) {
+                    this.guests.splice(index, 1);
+                    
+                }
+            }
+          
+            
+        });
+    </script>
+</body>
+</html>
